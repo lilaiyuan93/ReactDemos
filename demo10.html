@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo1</title>
+    <script src="lib/react/react.js"></script>
+    <script src="lib/react/react-dom.js"></script>
+    <script src="lib/babel/browser.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body>
+<div id="app"></div>
+</body>
+</html>
+<script type="text/babel">
+    var Suggest = React.createClass({
+        getInitialState(){
+            return {words:[]};
+        },
+        handleChange(event){
+            var wd = event.target.value;
+            $.ajax({
+                url: 'http://www.baidu.com/su',
+                type: 'get',
+                jsonp: 'cb',//服务器接收回调函数名的key
+                dataType: 'jsonp',
+                data: {wd: wd},
+                processData: true,
+                context:this,
+                success: function (result) {
+                    this.setState({words:result.s})
+                }
+            })
+        },
+        render(){
+            return (
+                    <div className="panel panel-default">
+                        <div className="panel panel-heading ">
+                            <input ref="input" type="text" className="form-control" onChange={this.handleChange}/>
+                        </div>
+                        <div className="panel panel-body">
+                            <ul className="list-group">
+                                {
+                                    this.state.words.map(function (item,index) {
+                                        return <li key={index}>{item}</li>
+                                    })
+                                }
+                            </ul>
+                        </div>
+                    </div>
+            )
+        }
+    })
+    ReactDOM.render(
+            <Suggest/>
+            ,document.getElementById('app')
+    )
+</script>

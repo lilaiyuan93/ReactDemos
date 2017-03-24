@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo1</title>
+    <script src="lib/react/react.js"></script>
+    <script src="lib/react/react-dom.js"></script>
+    <script src="lib/babel/browser.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body>
+<div id="app"></div>
+</body>
+</html>
+<script type="text/babel">
+
+
+    var Panel = React.createClass({
+        render(){
+            return (
+                    <div className={"panel panel-"+this.props.style}>
+                        <PanelHead head={this.props.head}> {this.props.head}</PanelHead>
+                        <PanelBody body={this.props.body}></PanelBody>
+                        <PanelFooter footer={this.props.footer}></PanelFooter>
+                    </div>
+            )
+        }
+    })
+    var PanelHead = React.createClass({
+        render() {
+            return (
+                    <div className="panel-heading">
+                        {this.props.head}
+                        {this.props.children}
+                    </div>
+            );
+        }
+    });
+    var PanelBody = React.createClass({
+        render(){
+            return (
+                    <div className="panel panel-body">
+                        {this.props.body}
+                    </div>
+            )
+        }
+    })
+    var PanelFooter = React.createClass({
+        render(){
+            return (
+                    <div className="panle panel-footer">
+                        {this.props.footer}
+                    </div>
+            )
+        }
+    })
+
+
+    ReactDOM.render(
+            <Panel style="success" head="head" body="body" footer="footer"/>
+            ,document.getElementById('app')
+    )
+</script>

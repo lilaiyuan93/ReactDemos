@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo1</title>
+    <script src="lib/react/react.js"></script>
+    <script src="lib/react/react-dom.js"></script>
+    <script src="lib/babel/browser.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body>
+<div id="app"></div>
+</body>
+</html>
+<script type="text/babel">
+    var Focus = React.createClass({
+        handleClick(){
+            this.refs.myTxt.focus();
+        },
+        render(){
+            return (
+                    <div>
+                        <input type="text" ref="myTxt"/>
+                        <button onClick={this.handleClick}>得到焦点</button>
+                    </div>
+            )
+        }
+    })
+    ReactDOM.render(
+            <Focus/>
+            ,document.getElementById('app')
+    )
+
+</script>

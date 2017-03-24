@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo1</title>
+    <script src="lib/react/react.js"></script>
+    <script src="lib/react/react-dom.js"></script>
+    <script src="lib/babel/browser.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body>
+<div id="app"></div>
+</body>
+</html>
+<script type="text/babel">
+
+    /*
+     * 属性
+     *   1.一般用来存放初始化后就不能改变的东西
+     *   2.一般由父组件传入
+     * */
+    var Person = React.createClass({
+        //属性类型
+        propTypes:{
+            age:React.PropTypes.number.isRequired
+        },
+        //默认项
+        getDefaultProps:function(){
+            return {name:'无名氏'}
+        },
+        render(){
+            return (
+                    <div>
+                        姓名:{this.props.name}
+                        年龄:{this.props.age}
+                        性别:{this.props.gender}
+                    </div>
+            )
+        }
+    })
+    var age =5 ;
+    ReactDOM.render(<Person   gender="男"/>,document.getElementById('app'))
+    ReactDOM.render(<Person age={age} name="李四" gender="男"/>,document.getElementById('app1'))
+</script>
